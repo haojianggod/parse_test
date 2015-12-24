@@ -70,7 +70,7 @@ class Jd51Job_HtmlFind(HtmlFind):
         jobElem = self.findElemByPattern(ur'<li class="tCompany_job_name">(.*?)</li>.*<div class="tCompany_text">(.*?)</div>')
         incName_Elem = self.searchElemByPattern(ur'<div class=".*?job_page_company">(.*?)</h[^>]*>')
         incIntro_Elem = self.searchElemByPattern(ur'<div class=.*?tCompany_text_gsjs.*?>(.*?)</div>')
-        incUrl_Elem = self.searchElemByPattern(ur'<li id="cofansnum">粉丝数：.*</li>.*<li><a href="(.*?)">查看公司简介>></a></li>')
+        incUrl_Elem = self.searchElemByPattern(ur'<li[^>]*>粉丝数：.*</li>.*<li><a href="(.*?)">查看公司简介>></a></li>')
 
         if len(jobElem) and len(jobElem[0]) < 2:
             raise Exception("find jobPosition error..")
