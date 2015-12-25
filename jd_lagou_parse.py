@@ -37,7 +37,8 @@ class JdLagouHtmlFind(HtmlFind):
 
         company = self.findTag('dl', 'job_company')
         for c in company:
-            cinfo = re.findall(r'.*领域</span>([^<>]*)'
+            cinfo = re.findall(r'.*?<img[^<>]*alt="(.*?)"[^<>]*>'
+                              r'.*领域</span>([^<>]*)'
                               r'.*规模</span>([^<>]*)'
                               r'.*主页</span>.*<a[^<>]*href="(.*?)"[^<>]*>'
                               r'.*目前阶段</span>([^<>]*)'
