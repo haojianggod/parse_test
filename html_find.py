@@ -31,7 +31,7 @@ class HtmlFind(object):
         return searches.groups()
 
     def remove_tag(self, s):
-        r = re.sub(r'<br>|<p>|<BR>','\n', s)
+        r = re.sub(r'<br>|<p>|<BR>|<br/>','\n', s)
         r = re.sub(r'(<[^>]*>)|&nbsp;','',r)
         r = re.sub(r'[\t\r]+', ' ', r)
         r = re.sub(r'\s+\n+\s+', '\n', r)
