@@ -22,13 +22,14 @@ class Jd51Job_HtmlFind(HtmlFind):
             "上班地址": 'jobWorkLocExt',
             "职能类别": 'jobCate',
             "职位标签": 'jobTags',
+            "薪酬福利": 'jobWelfare',
             "工作描述": 'jobDescription',
             "公司名":   'incName',
             "公司行业": 'incIndustry',
             "公司性质": 'incType',
             "公司规模": 'incScale',
             "公司地址": 'incAddress',
-            "公司介绍": 'incIntro'
+            "公司介绍": 'incIntro',
         }
 
     def set_field(self, key, value):
@@ -70,7 +71,7 @@ class Jd51Job_HtmlFind(HtmlFind):
         jobElem = self.findElemByPattern(ur'<li class="tCompany_job_name">(.*?)</li>.*<div class="tCompany_text">(.*?)</div>')
         incName_Elem = self.searchElemByPattern(ur'<div class=".*?job_page_company">(.*?)</h[^>]*>')
         incIntro_Elem = self.searchElemByPattern(ur'<div class=.*?tCompany_text_gsjs.*?>(.*?)</div>')
-        incUrl_Elem = self.searchElemByPattern(ur'<li[^>]*>粉丝数：.*</li>.*<li><a href="(.*?)">查看公司简介>></a></li>')
+        incUrl_Elem = self.searchElemByPattern(ur'<li><a href="([^>]*?)">查看公司简介.*?</a></li>')
 
         if len(jobElem) and len(jobElem[0]) < 2:
             raise Exception("find jobPosition error..")
@@ -83,7 +84,7 @@ class Jd51Job_HtmlFind(HtmlFind):
         if len(incIntro_Elem):
             self.result['incIntro'] = self.remove_tag(incIntro_Elem[0])
         if len(incUrl_Elem):
-            self.result['inUrl'] = self.remove_tag(incUrl_Elem[0])
+            self.result['inUrl'] = incUrl_Elem[0]
 
     def prt(self):
         for key, value in self.result.items():

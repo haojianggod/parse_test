@@ -26,6 +26,8 @@ class HtmlFind(object):
 
     def searchElemByPattern(self, pat):
         searches = re.search(pat, self._doc, re.S)
+        if not searches:
+            return []
         return searches.groups()
 
     def remove_tag(self, s):
@@ -36,7 +38,8 @@ class HtmlFind(object):
         r = re.sub(r'^\s+', '', r)
         return r
 
-
+    def find_fields(self):
+        raise NotImplementedError('need implete')
 
 
 
